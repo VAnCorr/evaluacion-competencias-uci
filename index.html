@@ -88,7 +88,7 @@
                     <input type="text" id="residentLevel" class="form-control" placeholder="Ej: R3">
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <button id="start-sim-btn" class="btn btn-primary">Iniciar Simulación como Residente</button>
+                    <button id="start-sim-btn" class="btn btn-primary" type="button">Iniciar Simulación como Residente</button>
                     <a href="#" id="evaluator-mode-link" style="color: var(--text-accent); cursor: pointer;">Acceder como Evaluador</a>
                 </div>
             </div>
@@ -326,6 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
         Object.values(views).forEach(v => v.classList.add('hidden'));
         if (views[viewName]) {
             views[viewName].classList.remove('hidden');
+        } else {
+            console.warn('[UCI App] Vista no encontrada:', viewName);
         }
     }
 
@@ -368,6 +370,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCaseList() {
         const caseListEl = document.getElementById('case-list');
         caseListEl.innerHTML = '';
+        if (!Array.isArray(cases) || cases.length === 0) {
+            caseListEl.innerHTML = '<p class="col-span-full text-center">No hay casos disponibles.</p>';
+            return;
+        }
         cases.forEach(caseData => {
             const caseCard = document.createElement('div');
             caseCard.className = 'p-4 border rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700';
@@ -737,7 +743,7 @@ window.sendEvaluationToGAS = async function() {
         const res = await fetch(GAS_URL, {
             method: 'POST',
             // Omitimos 'no-cors' para poder leer la respuesta
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            headers: { 'Content-Type': 'text/plain;charset-utf-8' },
             body: JSON.stringify(appState.currentResponses)
         });
 
@@ -769,22 +775,41 @@ window.sendEvaluationToGAS = async function() {
     // --- 6. EVENT LISTENERS ---
     
     function setupEventListeners() {
-        document.getElementById('start-sim-btn').addEventListener('click', () => {
-            const name = document.getElementById('residentName').value;
-            const level = document.getElementById('residentLevel').value;
+        const startBtn = document.getElementById('start-sim-btn');
+        const nameInput = document.getElementById('residentName');
+        const levelInput = document.getElementById('residentLevel');
+
+        function onStartClick(e) {
+            e?.preventDefault?.();
+            const name = nameInput.value;
+            const level = levelInput.value;
             if (name.trim() && level.trim()) {
-                startSimulation(name, level);
+                startBtn.disabled = true;
+                const prev = startBtn.textContent;
+                startBtn.textContent = 'Entrando...';
+                try {
+                    startSimulation(name, level);
+                } finally {
+                    // en la siguiente vista ya no importa este botón; reponer por si vuelve atrás
+                    setTimeout(() => { startBtn.disabled = false; startBtn.textContent = prev; }, 800);
+                }
             } else {
-                alert("Por favor, complete todos los campos.");
+                alert('Por favor, complete todos los campos.');
             }
-        });
+        }
+
+        startBtn.addEventListener('click', onStartClick);
+        [nameInput, levelInput].forEach(el => el.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter') { ev.preventDefault(); onStartClick(ev); }
+        }));
         
-        document.getElementById('evaluator-mode-link').addEventListener('click', () => {
-            const password = prompt("Ingrese la contraseña de evaluador:");
+        document.getElementById('evaluator-mode-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            const password = prompt('Ingrese la contraseña de evaluador:');
             if (password === CONFIG.evaluatorPassword) {
                 startEvaluation();
             } else if (password) {
-                alert("Contraseña incorrecta.");
+                alert('Contraseña incorrecta.');
             }
         });
 
@@ -797,11 +822,11 @@ window.sendEvaluationToGAS = async function() {
         });
         
         // Data management buttons
-        document.getElementById('export-json-btn').addEventListener('click', () => exportData(appState.currentResponses, `evaluacion_${appState.currentResponses.resident.name}.json`));
+        document.getElementById('export-json-btn').addEventListener('click', () => exportData(appState.currentResponses, `evaluacion_${appState.currentResponses.resident?.name || 'residente'}.json`));
         document.getElementById('export-csv-btn').addEventListener('click', exportToCsv);
         document.getElementById('export-all-btn').addEventListener('click', () => exportData(appState.allEvaluations, 'todas_las_evaluaciones.json'));
-    const sendBtn = document.getElementById('send-to-gas-btn');
-    if (sendBtn) sendBtn.addEventListener('click', () => window.sendEvaluationToGAS());
+        const sendBtn = document.getElementById('send-to-gas-btn');
+        if (sendBtn) sendBtn.addEventListener('click', () => window.sendEvaluationToGAS());
         
         const importCasesInput = document.getElementById('import-cases-input');
         document.getElementById('import-cases-btn').addEventListener('click', () => importCasesInput.click());
@@ -811,7 +836,7 @@ window.sendEvaluationToGAS = async function() {
                 localStorage.setItem('customCases', JSON.stringify(cases));
                 alert(`${data.length} casos importados correctamente.`);
             } else {
-                alert("El formato del archivo de casos es incorrecto.");
+                alert('El formato del archivo de casos es incorrecto.');
             }
         }));
         
@@ -823,7 +848,7 @@ window.sendEvaluationToGAS = async function() {
                 localStorage.setItem('allEvaluations', JSON.stringify(appState.allEvaluations));
                 alert(`${data.length} evaluaciones importadas correctamente.`);
             } else {
-                alert("El formato del archivo de evaluaciones es incorrecto.");
+                alert('El formato del archivo de evaluaciones es incorrecto.');
             }
         }));
     }
