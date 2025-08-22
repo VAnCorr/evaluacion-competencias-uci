@@ -227,4 +227,617 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "EDKA_SGLT2_01",
             title: "EDKA por Inhibidor SGLT-2 y Sepsis",
-            scenario: `<h4>Presentación del Paciente</h4><p>Mujer de 50 años, ex-fumadora, con antecedentes de HTA, dislipidemia, cáncer de mama (tratado), hipotiroidismo y Diabetes Mellitus tipo 2. Su tratamiento actual incluye <strong>Dapagliflozina 10mg/día</strong>, Metformina e insulina NPH.</p><p>Ingresa por dolor abdominal, diarrea y fiebre. Al examen, está alerta, taquipneica, con dolor abdominal difuso. Un ultrasonido abdominal muestra colelitiasis múltiple.</p><h4 class='font-bold mt-4'>Resultados de Laboratorio al Ingreso a UCI:</h4><table class='w-full text-sm mt-2'><thead style='background-color: var(--bg-tertiary);'><tr><th class='p-2 text-left'>Parámetro</th><th class='p-2 text-right'>Valor</th></tr></thead><tbody><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Glucosa</td><td class='p-2 text-right font-bold'>165 mg/dL</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>pH</td><td class='p-2 text-right font-bold text-red-500'>7.13</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Bicarbonato (HCO3)
+            scenario: `<h4>Presentación del Paciente</h4><p>Mujer de 50 años, ex-fumadora, con antecedentes de HTA, dislipidemia, cáncer de mama (tratado), hipotiroidismo y Diabetes Mellitus tipo 2. Su tratamiento actual incluye <strong>Dapagliflozina 10mg/día</strong>, Metformina e insulina NPH.</p><p>Ingresa por dolor abdominal, diarrea y fiebre. Al examen, está alerta, taquipneica, con dolor abdominal difuso. Un ultrasonido abdominal muestra colelitiasis múltiple.</p><h4 class='font-bold mt-4'>Resultados de Laboratorio al Ingreso a UCI:</h4><table class='w-full text-sm mt-2'><thead style='background-color: var(--bg-tertiary);'><tr><th class='p-2 text-left'>Parámetro</th><th class='p-2 text-right'>Valor</th></tr></thead><tbody><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Glucosa</td><td class='p-2 text-right font-bold'>165 mg/dL</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>pH</td><td class='p-2 text-right font-bold text-red-500'>7.13</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Bicarbonato (HCO3)</td><td class='p-2 text-right font-bold text-red-500'>2 mEq/L</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Anion Gap</td><td class='p-2 text-right font-bold text-red-500'>32</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Potasio (K+)</td><td class='p-2 text-right'>3.9 mEq/L</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Cetonemia</td><td class='p-2 text-right'>Positiva</td></tr></tbody></table><p class='mt-4'>El paciente es admitido en la UCI con un diagnóstico de <strong>Sepsis de origen biliar</strong>. Su tarea es analizar la situación metabólica y definir el plan de manejo completo.</p>`,
+            questions: [
+                {
+                    id: "q1",
+                    competencyId: "dx",
+                    prompt: "Análisis del Problema: A pesar de una glucosa casi normal, el paciente tiene una acidosis metabólica severa con anión gap elevado. ¿Cuál es el diagnóstico metabólico preciso y qué fármaco es el principal factor causal?",
+                    type: "textarea",
+                    placeholder: "Diagnóstico metabólico: ...\nFármaco causal principal: ..."
+                },
+                {
+                    id: "q2",
+                    competencyId: "tx",
+                    prompt: "Plan Terapéutico Inmediato: Enumere las 3 acciones farmacológicas y no farmacológicas más importantes que debe ejecutar AHORA para tratar la EDKA (además del manejo de la sepsis).",
+                    type: "textarea",
+                    placeholder: "1. Suspender inmediatamente...\n2. Iniciar infusión de...\n3. Iniciar fluidoterapia con..."
+                },
+                {
+                    id: "q3",
+                    competencyId: "mon",
+                    prompt: "Monitorización y Prevención: Al iniciar la infusión de insulina, ¿qué dos parámetros de laboratorio debe monitorizar de forma horaria o bi-horaria para prevenir complicaciones iatrogénicas graves? Explique brevemente por qué.",
+                    type: "textarea",
+                    placeholder: "Parámetro 1 y su justificación...\nParámetro 2 y su justificación..."
+                },
+                {
+                    id: "q4",
+                    competencyId: "dx",
+                    prompt: "Razonamiento Fisiopatológico: Explique brevemente el mecanismo por el cual el inhibidor de SGLT-2 contribuyó a esta cetoacidosis con glucosa normal.",
+                    type: "textarea",
+                    placeholder: "El fármaco causa glucosuria, lo que lleva a un estado de déficit relativo de insulina/exceso de glucagón y promueve la cetogénesis a pesar de..."
+                }
+            ]
+        },
+        {
+            id: "THYROID_STORM_COMA_01",
+            title: "Tormenta Tiroidea con presentación en Coma",
+            scenario: `<h4>Presentación del Paciente</h4><p>Mujer de 32 años, con antecedente de asma bien controlada, es encontrada inconsciente en casa. Es intubada en la escena por un Glasgow de 5 (O1, V1, M3).</p><p>A su llegada a emergencias, persiste taquicárdica y febril (39.5°C), con una PA inicial de 168/102 mmHg. Se inicia manejo para un diagnóstico de trabajo de <strong>meningoencefalitis</strong>.</p><h4 class='font-bold mt-4'>Evolución en las primeras horas en UCI:</h4><ul class='list-disc list-inside text-sm mt-2'><li>A pesar de la sedación, persiste con taquicardia sinusal y fiebre.</li><li>Desarrolla <strong>hipotensión</strong> que requiere infusión de noradrenalina.</li><li>La punción lumbar y el TAC de cráneo son normales.</li></ul><h4 class='font-bold mt-4'>Resultados de Laboratorio Clave (7 horas post-ingreso):</h4><table class='w-full text-sm mt-2'><thead style='background-color: var(--bg-tertiary);'><tr><th class='p-2 text-left'>Parámetro</th><th class='p-2 text-right'>Valor</th><th class='p-2 text-left'>Rango de Referencia</th></tr></thead><tbody><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>TSH</td><td class='p-2 text-right font-bold text-red-500'>&lt;0.01 mU/L</td><td class='p-2'>(0.4-4.5)</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>T4 Libre</td><td class='p-2 text-right font-bold text-red-500'>53.7 pmol/L</td><td class='p-2'>(12-22)</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>T3 Libre</td><td class='p-2 text-right font-bold text-red-500'>21.6 pmol/L</td><td class='p-2'>(3.1-6.8)</td></tr></tbody></table><p class='mt-4'>Se confirma el diagnóstico de <strong>Tormenta Tiroidea</strong>. Su tarea es diseñar el plan de manejo farmacológico completo e inmediato.</p>`,
+            questions: [
+                { id: "q1", competencyId: "dx", prompt: "Análisis del Retraso Diagnóstico: El diagnóstico inicial fue meningoencefalitis. ¿Qué dos hallazgos clínicos clave en la presentación inicial podrían haber sugerido una crisis tiroidea y ampliado el diagnóstico diferencial más temprano?", type: "textarea", placeholder: "1. La combinación de taquicardia sinusal desproporcionada y...\n2. La presencia inicial de hipertensión en un paciente en shock aparente, que es atípico para sepsis..." },
+                { id: "q2", competencyId: "tx", prompt: "Plan Terapéutico Multifacético: Describa el manejo farmacológico completo para la tormenta tiroidea, indicando un fármaco para cada uno de los 4 pilares principales del tratamiento.", type: "textarea", placeholder: "1. Bloqueo de síntesis: [Fármaco y dosis]\n2. Bloqueo de liberación: [Fármaco y dosis]\n3. Bloqueo de efectos periféricos: [Fármaco y dosis]\n4. Bloqueo de conversión periférica: [Fármaco y dosis]" },
+                { id: "q3", competencyId: "tx", prompt: "Secuencia Terapéutica Crítica: Al usar un antitiroideo (ej. Propiltiouracilo) y una solución de yodo (ej. Lugol), ¿cuál es la secuencia de administración correcta y por qué es fundamental seguirla?", type: "textarea", placeholder: "Se debe administrar primero... (fármaco), al menos 60 minutos antes de... (fármaco). La razón es para prevenir el fenómeno de..." },
+                { id: "q4", competencyId: "mon", prompt: "Manejo de Comorbilidades: La paciente tiene asma. Aunque se usó propranolol, ¿qué alternativa de beta-bloqueador sería más segura si el asma fuera severo o si desarrollara broncoespasmo? ¿Por qué?", type: "textarea", placeholder: "Alternativa: [Fármaco]\nJustificación: Su principal ventaja en este escenario es..." }
+            ]
+        },
+        {
+            id: "APOPLEXY_01",
+            title: "Apoplejía Hipofisaria con Déficit Visual Agudo",
+            scenario: `<h4>Presentación del Paciente</h4><p>Un hombre de 46 años con cefalea intensa de inicio súbito es traído a emergencias. Presenta náuseas, vómitos y visión borrosa. No tiene antecedentes médicos conocidos.</p><p>Al examen, está somnoliento pero responde a estímulos. PA: 90/50 mmHg, FC: 110 lpm. Se evidencia ptosis del párpado derecho y oftalmoplejía (parálisis del III par craneal). El examen de campimetría visual por confrontación sugiere una hemianopsia bitemporal.</p><h4 class='font-bold mt-4'>Resultados de Laboratorio Iniciales:</h4><table class='w-full text-sm mt-2'><thead style='background-color: var(--bg-tertiary);'><tr><th class='p-2 text-left'>Parámetro</th><th class='p-2 text-right'>Valor</th></tr></thead><tbody><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Sodio (Na+)</td><td class='p-2 text-right'>128 mEq/L</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>Cortisol AM</td><td class='p-2 text-right font-bold text-red-500'>3 mcg/dL (Bajo)</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>TSH</td><td class='p-2 text-right font-bold text-red-500'>0.1 mU/L (Bajo)</td></tr><tr style='border-bottom: 1px solid var(--border-color);'><td class='p-2 font-medium'>T4 Libre</td><td class='p-2 text-right'>0.7 ng/dL (Normal-bajo)</td></tr></tbody></table><p class='mt-4'>Una RM de cerebro confirma una <strong>hemorragia dentro de un macroadenoma hipofisario</strong> con compresión del quiasma óptico y extensión al seno cavernoso derecho. Su tarea es establecer el plan de manejo inmediato en la UCI.</p>`,
+            questions: [
+                { id: "q1", competencyId: "dx", prompt: "Análisis y Diagnóstico: La combinación de cefalea en trueno, oftalmoplejía y el cortisol bajo son altamente sugestivos de apoplejía hipofisaria. ¿Cuál es la deficiencia hormonal que representa la amenaza más inmediata para la vida y por qué?", type: "textarea", placeholder: "La deficiencia más crítica es la de... (hormona), debido a que causa un shock de tipo... (distributivo, cardiogénico, etc.), que no responderá adecuadamente a los vasopresores sin el reemplazo hormonal." },
+                { id: "q2", competencyId: "tx", prompt: "Manejo Hormonal de Emergencia: Describa la prescripción farmacológica inicial para corregir esta deficiencia hormonal potencialmente mortal.", type: "textarea", placeholder: "Fármaco: ...\nDosis de estrés: ... (ej. 100 mg)\nVía de administración: ..." },
+                { id: "q3", competencyId: "tx", prompt: "Decisión Multidisciplinaria: El paciente tiene un déficit visual agudo y progresivo. ¿Cuál es su recomendación principal para el equipo de neurocirugía y con qué urgencia?", type: "textarea", placeholder: "Mi recomendación es proceder con... (tipo de cirugía). La urgencia es... (emergente/urgente/electiva) debido al riesgo de pérdida visual permanente." },
+                { id: "q4", competencyId: "mon", prompt: "Monitorización y Prevención: Además de la monitorización neurológica, ¿qué otra complicación endocrina aguda podría desarrollar este paciente en las próximas 24-48 horas, y cómo la vigilaría?", type: "textarea", placeholder: "Complicación potencial: ...\nParámetros a vigilar estrictamente: ... y ..." }
+            ]
+        }
+        // {{ PEGA AQUÍ TUS CASOS }}
+        // INSTRUCCIÓN: Agrega más casos aquí, siguiendo el mismo formato JSON.
+    ];
+    
+    // --- 3. ESTADO DE LA APLICACIÓN ---
+    let appState = {
+        currentUser: null,
+        isEvaluator: false,
+        currentCase: null,
+        currentResponses: {},
+        allEvaluations: [], // Array de todos los resultados guardados
+    };
+
+    // --- 4. SELECTORES DEL DOM ---
+    const views = {
+        welcome: document.getElementById('welcome-view'),
+        caseSelection: document.getElementById('case-selection-view'),
+        simulation: document.getElementById('simulation-view'),
+        evaluation: document.getElementById('evaluation-view'),
+        report: document.getElementById('report-view'),
+    };
+    
+    // --- 5. LÓGICA DE LA APLICACIÓN ---
+    
+    function init() {
+        // Cargar datos de localStorage
+        const savedEvaluations = localStorage.getItem('allEvaluations');
+        if (savedEvaluations) {
+            appState.allEvaluations = JSON.parse(savedEvaluations);
+        }
+        const savedCases = localStorage.getItem('customCases');
+        if (savedCases) {
+            cases = JSON.parse(savedCases);
+        }
+        
+        setupEventListeners();
+        toggleTheme(localStorage.getItem('theme') === 'dark');
+        navigateTo('welcome');
+        console.log('[UCI App] Init ok');
+    }
+
+    function navigateTo(viewName) {
+        Object.values(views).forEach(v => v.classList.add('hidden'));
+        if (views[viewName]) {
+            views[viewName].classList.remove('hidden');
+        }
+    }
+
+    function startSimulation(residentName, residentLevel) {
+        appState.currentUser = { name: residentName, level: residentLevel };
+        appState.isEvaluator = false;
+        document.getElementById('selection-title').textContent = `Bienvenido, ${residentName}. Seleccione un caso:`;
+        renderCaseList();
+        navigateTo('caseSelection');
+    }
+    
+    function startEvaluation() {
+        appState.isEvaluator = true;
+        document.getElementById('selection-title').textContent = "Modo Evaluador: Seleccione una evaluación para revisar";
+        // Intentar cargar desde GAS, si no, usar localStorage
+        (async () => {
+            const fromGAS = await fetchSubmissionsFromGAS();
+            if (fromGAS) {
+                // Normalizar a estructura esperada por la app (sin evaluación)
+                appState.allEvaluations = fromGAS.map(s => ({
+                    resident: s.resident,
+                    caseId: s.caseId,
+                    caseTitle: s.caseTitle,
+                    responses: s.responses,
+                    evaluation: null,
+                    date: s.date,
+                    submissionId: s.id
+                }));
+                localStorage.setItem('allEvaluations', JSON.stringify(appState.allEvaluations));
+            } else {
+                // fallback ya está en localStorage
+                const saved = localStorage.getItem('allEvaluations');
+                if (saved) appState.allEvaluations = JSON.parse(saved);
+            }
+            renderEvaluationList();
+            navigateTo('caseSelection');
+        })();
+    }
+    
+    function renderCaseList() {
+        const caseListEl = document.getElementById('case-list');
+        caseListEl.innerHTML = '';
+        cases.forEach(caseData => {
+            const caseCard = document.createElement('div');
+            caseCard.className = 'p-4 border rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700';
+            caseCard.innerHTML = `<h3 class="font-bold text-lg">${caseData.title}</h3>`;
+            caseCard.onclick = () => selectCase(caseData.id);
+            caseListEl.appendChild(caseCard);
+        });
+    }
+
+    function selectCase(caseId) {
+        appState.currentCase = cases.find(c => c.id === caseId);
+        appState.currentResponses = {
+            resident: appState.currentUser,
+            caseId: caseId,
+            caseTitle: appState.currentCase.title,
+            responses: {},
+            evaluation: null,
+            date: new Date().toISOString(),
+            submissionId: generateId()
+        };
+        renderSimulationView();
+        navigateTo('simulation');
+    }
+    
+    function renderSimulationView() {
+        document.getElementById('sim-case-title').textContent = appState.currentCase.title;
+        document.getElementById('sim-case-panel').innerHTML = `<h3>Escenario Clínico</h3>${appState.currentCase.scenario}`;
+        
+        const responsePanel = document.getElementById('sim-response-panel');
+        responsePanel.innerHTML = '<h3>Plan de Acción y Razonamiento</h3>';
+        appState.currentCase.questions.forEach(q => {
+            const group = document.createElement('div');
+            group.className = 'form-group';
+            let inputHtml = '';
+            if (q.type === 'select') {
+                inputHtml = `<select id="${q.id}" class="form-control">${q.options?.map(o => `<option>${o}</option>`).join('') || ''}</select>`;
+            } else if (q.type === 'textarea') {
+                inputHtml = `<textarea id="${q.id}" rows="4" class="form-control" placeholder="${q.placeholder || ''}"></textarea>`;
+            }
+            group.innerHTML = `<label for="${q.id}">${q.prompt}</label>${inputHtml}`;
+            responsePanel.appendChild(group);
+        });
+    }
+    
+    function submitResponses() {
+        appState.currentCase.questions.forEach(q => {
+            appState.currentResponses.responses[q.id] = {
+                prompt: q.prompt,
+                answer: (document.getElementById(q.id)?.value || '').trim(),
+                competencyId: q.competencyId
+            };
+        });
+
+        // Guardar localmente como pendiente
+        appState.allEvaluations.push(appState.currentResponses);
+        localStorage.setItem('allEvaluations', JSON.stringify(appState.allEvaluations));
+
+        // Enviar a GAS (pendiente de evaluación)
+        sendResidentSubmissionToGAS(appState.currentResponses)
+            .then(() => {
+                alert("Respuestas enviadas. Un evaluador podrá calificarlas más tarde.");
+                navigateTo('welcome');
+            })
+            .catch(() => {
+                alert("Respuestas guardadas localmente. No se pudo enviar a la nube en este momento.");
+                navigateTo('welcome');
+            });
+    }
+    
+    function renderEvaluationView(evaluationData) {
+        appState.currentResponses = evaluationData; // Cargar la data para evaluar
+        document.getElementById('evaluation-subtitle').textContent = `Residente: ${evaluationData.resident.name} | Caso: ${evaluationData.caseTitle}`;
+        
+        const answersEl = document.getElementById('evaluation-resident-answers');
+        answersEl.innerHTML = '';
+        Object.values(evaluationData.responses).forEach(resp => {
+            answersEl.innerHTML += `<div class=\"mb-4\"><p class=\"font-semibold text-gray-500\">${resp.prompt}</p><div class=\"resident-answer\">${resp.answer}</div></div>`;
+        });
+
+        const rubricEl = document.getElementById('evaluation-rubric');
+        rubricEl.innerHTML = '';
+        CONFIG.rubrics.competencies.forEach(comp => {
+            rubricEl.innerHTML += `
+                <div class=\"evaluation-item\">
+                    <label class=\"font-bold\">${comp.name} (${(comp.weight * 100).toFixed(0)}%)</label>
+                    <div class=\"slider-group\">
+                        <input type=\"range\" id=\"eval-${comp.id}\" min=\"0\" max=\"100\" value=\"50\" data-competency-id=\"${comp.id}\">
+                        <span id=\"eval-val-${comp.id}\">50%</span>
+                    </div>
+                </div>`;
+        });
+        document.getElementById('evaluator-feedback').value = '';
+
+        // Add event listeners for sliders
+        CONFIG.rubrics.competencies.forEach(comp => {
+            document.getElementById(`eval-${comp.id}`).addEventListener('input', e => {
+                document.getElementById(`eval-val-${comp.id}`).textContent = `${e.target.value}%`;
+            });
+        });
+    }
+
+    // Reemplazo solicitado por el usuario: guardar, calcular y enviar en no-cors
+    function saveEvaluation() {
+        // Calcular puntajes de la rúbrica
+        const evaluationScores = {};
+        CONFIG.rubrics.competencies.forEach(comp => {
+            evaluationScores[comp.id] = parseInt(document.getElementById(`eval-${comp.id}`).value, 10);
+        });
+        // Calcular puntaje final normalizado a 0-100
+        const totalWeight = CONFIG.rubrics.competencies.reduce((sum, c) => sum + (c.weight || 0), 0) || 1;
+        let weightedSum = 0;
+        CONFIG.rubrics.competencies.forEach(comp => {
+            weightedSum += (evaluationScores[comp.id] || 0) * comp.weight;
+        });
+        const finalScoreNum = weightedSum / totalWeight;
+        const performance = CONFIG.rubrics.performanceLevels.find(p => finalScoreNum >= p.threshold) || { level: 'N/A' };
+
+        // Adjuntar evaluación al objeto actual
+        appState.currentResponses.evaluation = {
+            scores: evaluationScores,
+            feedback: document.getElementById('evaluator-feedback').value,
+            finalScore: Number(finalScoreNum.toFixed(1)),
+            performanceLevel: performance.level
+        };
+
+        // Guardar localmente, usando submissionId como clave
+        const existingIndex = appState.allEvaluations.findIndex(e => e.submissionId === appState.currentResponses.submissionId);
+        if (existingIndex > -1) {
+            appState.allEvaluations[existingIndex] = appState.currentResponses;
+        } else {
+            appState.allEvaluations.push(appState.currentResponses);
+        }
+        localStorage.setItem('allEvaluations', JSON.stringify(appState.allEvaluations));
+
+        // Enviar la evaluación completa a Google Apps Script (respuesta opaca con no-cors)
+        const btn = document.getElementById('save-evaluation-btn');
+        if (btn) { btn.disabled = true; btn.textContent = 'Guardando en la Nube...'; }
+
+        fetch(GAS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(appState.currentResponses)
+        })
+        .then(() => {
+            alert('Evaluación guardada y PDF generado en Google Drive.');
+            renderReportView(appState.currentResponses);
+            navigateTo('report');
+        })
+        .catch(err => {
+            console.error('Error al enviar la evaluación:', err);
+            alert('Error al guardar en la nube. La evaluación se guardó localmente.');
+            renderReportView(appState.currentResponses);
+            navigateTo('report');
+        })
+        .finally(() => {
+            if (btn) { btn.disabled = false; btn.textContent = 'Guardar Evaluación y Ver Reporte'; }
+        });
+    }
+    
+    function renderReportView(data) {
+        let finalScoreAccum = 0;
+        const totalWeight = CONFIG.rubrics.competencies.reduce((sum, c) => sum + (c.weight || 0), 0) || 1;
+        const tableBody = document.getElementById('report-table-body');
+        tableBody.innerHTML = '';
+
+        document.getElementById('report-resident-name').textContent = data.resident.name;
+        document.getElementById('report-resident-level').textContent = data.resident.level;
+        document.getElementById('report-case-title').textContent = data.caseTitle;
+        document.getElementById('report-date').textContent = new Date(data.date).toLocaleString('es-ES');
+        
+        if (data.evaluation) {
+            CONFIG.rubrics.competencies.forEach(comp => {
+                const score = data.evaluation.scores[comp.id] || 0;
+                finalScoreAccum += score * comp.weight;
+
+                // Agrupar respuestas por competencia para el reporte
+                const relevantAnswers = Object.values(data.responses)
+                    .filter(r => r.competencyId === comp.id)
+                    .map(r => `<strong>${r.prompt.split(':')[0]}:</strong><br><em>${r.answer}</em>`)
+                    .join('<hr class=\"my-1\">');
+
+                const row = `<tr>
+                    <td class=\"border p-2\"><strong>${comp.name}</strong></td>
+                    <td class=\"border p-2 text-xs\">${relevantAnswers || 'N/A'}</td>
+                    <td class=\"border p-2 text-center font-bold\">${score}%</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+            
+            const finalScore = finalScoreAccum / totalWeight;
+            const performance = CONFIG.rubrics.performanceLevels.find(p => finalScore >= p.threshold);
+            document.getElementById('report-final-score').textContent = `${finalScore.toFixed(1)}%`;
+            const levelEl = document.getElementById('report-performance-level');
+            levelEl.textContent = performance.level;
+            levelEl.style.color = performance.color;
+
+            document.getElementById('report-feedback').textContent = data.evaluation.feedback || "No se proporcionó retroalimentación adicional.";
+        }
+        // Mostrar enlace al PDF generado por GAS (si existe)
+        try {
+            const reportViewEl = document.getElementById('report-view');
+            let linkEl = document.getElementById('report-gas-link');
+            if (data.gasPdfUrl) {
+              if (!linkEl) {
+                linkEl = document.createElement('p');
+                linkEl.id = 'report-gas-link';
+                linkEl.style.marginTop = '8px';
+                reportViewEl.appendChild(linkEl);
+              }
+              linkEl.innerHTML = `<a href=\"${data.gasPdfUrl}\" target=\"_blank\" rel=\"noopener\">Abrir PDF generado en Drive</a>`;
+            } else if (linkEl) {
+              linkEl.remove();
+            }
+          } catch (e) {
+            console.warn('No se pudo renderizar el enlace de GAS:', e);
+          }
+    }
+    
+    // --- MODO EVALUADOR Y GESTIÓN DE DATOS ---
+    
+    function renderEvaluationList() {
+        const listEl = document.getElementById('case-list');
+        listEl.innerHTML = '';
+        if (appState.allEvaluations.length === 0) {
+            listEl.innerHTML = '<p class="col-span-full text-center">No hay evaluaciones completadas para revisar.</p>';
+            return;
+        }
+        
+        appState.allEvaluations.forEach(ev => {
+            const card = document.createElement('div');
+            card.className = 'p-4 border rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700';
+            card.innerHTML = `
+                <h3 class=\"font-bold\">${ev.caseTitle}</h3>
+                <p class=\"text-sm\">Residente: ${ev.resident.name}</p>
+                <p class=\"text-xs text-gray-500\">${new Date(ev.date).toLocaleString()}</p>
+                <p class=\"text-sm font-bold mt-2 ${ev.evaluation ? 'text-green-600' : 'text-yellow-600'}\">
+                    ${ev.evaluation ? 'Evaluado' : 'Pendiente de Evaluación'}
+                </p>`;
+            card.onclick = () => {
+                if(ev.evaluation) {
+                   renderReportView(ev);
+                   navigateTo('report');
+                } else {
+                   renderEvaluationView(ev);
+                   navigateTo('evaluation');
+                }
+            };
+            listEl.appendChild(card);
+        });
+    }
+
+    function toggleTheme(isDark) {
+        document.documentElement.classList.toggle('dark', isDark);
+        document.getElementById('theme-toggle').textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    
+    function exportData(data, filename) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+    
+    function importData(fileInput, callback) {
+        const file = fileInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const data = JSON.parse(e.target.result);
+                callback(data);
+            } catch (error) {
+                alert("Error al leer el archivo. Asegúrese de que sea un JSON válido.");
+            }
+        };
+        reader.readAsText(file);
+    }
+    
+    function exportToCsv() {
+        const ev = appState.currentResponses;
+        if (!ev || !ev.evaluation) return;
+        
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Competencia,Peso,Puntaje,Respuesta Clave\n";
+        
+        CONFIG.rubrics.competencies.forEach(comp => {
+            const score = ev.evaluation.scores[comp.id] || 0;
+            const relevantAnswers = Object.values(ev.responses)
+                .filter(r => r.competencyId === comp.id)
+                .map(r => r.answer.replace(/\"/g, '""')) // Escape double quotes
+                .join('; ');
+            csvContent += `"${comp.name}","${comp.weight}","${score}","${relevantAnswers}"\n`;
+        });
+        
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `evaluacion_${ev.resident.name}_${ev.caseId}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Utilidad simple para generar un ID único de envío
+function generateId() {
+  return 'sub_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+// Enviar respuestas del residente a GAS (sin calificación)
+async function sendResidentSubmissionToGAS(submission) {
+  if (!GAS_URL) return { status: 'skipped' };
+  const payload = {
+    type: 'submission',
+    id: submission.submissionId,
+    date: submission.date,
+    resident: submission.resident,
+    caseId: submission.caseId,
+    caseTitle: submission.caseTitle,
+    responses: submission.responses
+  };
+  const res = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset-utf-8' },
+    body: JSON.stringify(payload)
+  });
+  return res.json();
+}
+
+// Obtener lista de envíos pendientes desde GAS
+async function fetchSubmissionsFromGAS() {
+  if (!GAS_URL) return null;
+  try {
+    const res = await fetch(GAS_URL + '?action=list');
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (Array.isArray(data.submissions)) return data.submissions;
+    return null;
+  } catch (e) { return null; }
+}
+
+// Enviar la evaluación (con calificación) a GAS a demanda desde el reporte
+// Reemplazado según solicitud del usuario
+window.sendEvaluationToGAS = async function() {
+    const btn = document.getElementById('send-to-gas-btn');
+    const statusEl = document.getElementById('send-status');
+    if (!appState.currentResponses || !appState.currentResponses.evaluation) {
+        alert('Primero guarda la evaluación para poder enviarla.');
+        return;
+    }
+    if (!GAS_URL) {
+        alert('La URL de Google Apps Script no está configurada.');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    if (statusEl) {
+        statusEl.textContent = 'Enviando al servidor...';
+        statusEl.style.color = 'var(--text-secondary)';
+    }
+
+    try {
+        const res = await fetch(GAS_URL, {
+            method: 'POST',
+            // Omitimos 'no-cors' para poder leer la respuesta
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(appState.currentResponses)
+        });
+
+        const json = await res.json();
+
+        if (json.status === 'success' && json.pdfUrl) {
+            appState.currentResponses.gasPdfUrl = json.pdfUrl;
+            renderReportView(appState.currentResponses);
+            if (statusEl) {
+                statusEl.textContent = '¡PDF guardado en Drive!';
+                statusEl.style.color = '#16a34a';
+            }
+            alert('Evaluación guardada y PDF generado exitosamente en Google Drive.');
+        } else {
+            throw new Error(json.message || 'Respuesta no exitosa del servidor');
+        }
+    } catch (e) {
+        if (statusEl) {
+            statusEl.textContent = `Fallo al enviar: ${e.message}`;
+            statusEl.style.color = 'var(--danger-color)';
+        }
+        alert('No se pudo enviar a Drive: ' + e.message);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generar PDF y Enviar a Drive';
+    }
+}
+
+    // --- 6. EVENT LISTENERS ---
+    
+    function setupEventListeners() {
+        document.getElementById('start-sim-btn').addEventListener('click', () => {
+            const name = document.getElementById('residentName').value;
+            const level = document.getElementById('residentLevel').value;
+            if (name.trim() && level.trim()) {
+                startSimulation(name, level);
+            } else {
+                alert("Por favor, complete todos los campos.");
+            }
+        });
+        
+        document.getElementById('evaluator-mode-link').addEventListener('click', () => {
+            const password = prompt("Ingrese la contraseña de evaluador:");
+            if (password === CONFIG.evaluatorPassword) {
+                startEvaluation();
+            } else if (password) {
+                alert("Contraseña incorrecta.");
+            }
+        });
+
+        document.getElementById('submit-responses-btn').addEventListener('click', submitResponses);
+        document.getElementById('save-evaluation-btn').addEventListener('click', saveEvaluation);
+        document.getElementById('back-to-welcome-btn').addEventListener('click', () => navigateTo('welcome'));
+        
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            toggleTheme(document.documentElement.classList.toggle('dark'));
+        });
+        
+        // Data management buttons
+        document.getElementById('export-json-btn').addEventListener('click', () => exportData(appState.currentResponses, `evaluacion_${appState.currentResponses.resident.name}.json`));
+        document.getElementById('export-csv-btn').addEventListener('click', exportToCsv);
+        document.getElementById('export-all-btn').addEventListener('click', () => exportData(appState.allEvaluations, 'todas_las_evaluaciones.json'));
+    const sendBtn = document.getElementById('send-to-gas-btn');
+    if (sendBtn) sendBtn.addEventListener('click', () => window.sendEvaluationToGAS());
+        
+        const importCasesInput = document.getElementById('import-cases-input');
+        document.getElementById('import-cases-btn').addEventListener('click', () => importCasesInput.click());
+        importCasesInput.addEventListener('change', () => importData(importCasesInput, (data) => {
+            if (Array.isArray(data) && data.every(c => c.id && c.title && c.questions)) {
+                cases = data;
+                localStorage.setItem('customCases', JSON.stringify(cases));
+                alert(`${data.length} casos importados correctamente.`);
+            } else {
+                alert("El formato del archivo de casos es incorrecto.");
+            }
+        }));
+        
+        const importAllInput = document.getElementById('import-all-input');
+        document.getElementById('import-all-btn').addEventListener('click', () => importAllInput.click());
+        importAllInput.addEventListener('change', () => importData(importAllInput, (data) => {
+            if (Array.isArray(data)) {
+                appState.allEvaluations = data;
+                localStorage.setItem('allEvaluations', JSON.stringify(appState.allEvaluations));
+                alert(`${data.length} evaluaciones importadas correctamente.`);
+            } else {
+                alert("El formato del archivo de evaluaciones es incorrecto.");
+            }
+        }));
+    }
+
+    // --- 7. INICIO DE LA APP ---
+    init();
+});
+
+// Handler global de errores para facilitar soporte
+window.onerror = function(message, source, lineno, colno, error) {
+  console.error('[UCI App] Error:', message, 'en', source, lineno + ':' + colno, error);
+  alert('Ocurrió un error cargando la aplicación. Por favor, actualiza con Ctrl+F5 e intenta nuevamente.');
+};
+</script>
+
+</body>
+</html>
